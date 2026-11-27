@@ -94,6 +94,31 @@ namespace opsaver.Migrations
                     b.ToTable("Medicos");
                 });
 
+            modelBuilder.Entity("opsaver.Models.Paciente", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Correo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombreCompleto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pacientes");
+                });
+
             modelBuilder.Entity("ClinicaMedico", b =>
                 {
                     b.HasOne("opsaver.Models.Clinica", null)
