@@ -21,6 +21,50 @@ namespace opsaver.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ClinicaMedico", b =>
+                {
+                    b.Property<int>("ClinicasId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MedicosId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClinicasId", "MedicosId");
+
+                    b.HasIndex("MedicosId");
+
+                    b.ToTable("ClinicaMedico");
+                });
+
+            modelBuilder.Entity("opsaver.Models.Clinica", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Correo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clinicas");
+                });
+
             modelBuilder.Entity("opsaver.Models.Medico", b =>
                 {
                     b.Property<int>("Id")
@@ -48,6 +92,21 @@ namespace opsaver.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Medicos");
+                });
+
+            modelBuilder.Entity("ClinicaMedico", b =>
+                {
+                    b.HasOne("opsaver.Models.Clinica", null)
+                        .WithMany()
+                        .HasForeignKey("ClinicasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("opsaver.Models.Medico", null)
+                        .WithMany()
+                        .HasForeignKey("MedicosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
