@@ -1,0 +1,40 @@
+﻿@model IEnumerable<opsaver.Models.Resena>
+
+@{
+    ViewData["Title"] = "Moderación de reseñas";
+}
+
+<h1>Moderación de reseñas</h1>
+
+<p>Revisa las reseñas registradas y elimina aquellas que consideres inapropiadas.</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Médico</th>
+            <th>Paciente</th>
+            <th>Calificación</th>
+            <th>Comentario</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var resena in Model)
+        {
+            <tr>
+                <td>@resena.Medico?.NombreCompleto</td>
+                <td>@resena.Paciente?.NombreCompleto</td>
+                <td>@resena.Calificacion</td>
+                <td>@resena.Comentario</td>
+                <td>@resena.Fecha.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <form asp-action="Eliminar" method="post" asp-route-id="@resena.Id"
+                          onsubmit="return confirm('¿Está seguro de eliminar esta reseña?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
