@@ -430,3 +430,9 @@ appsettings.Local.json
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# OPSAVER - configuracion local con credenciales
+Database/Scripts/02_CreateLogin.local.sql
+
+# ASP.NET Core - configuracion local
+appsettings.Local.json
