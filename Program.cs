@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using opsaver.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddJsonFile(
@@ -7,6 +10,10 @@ builder.Configuration.AddJsonFile(
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<OpsaverDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build(); 
 
