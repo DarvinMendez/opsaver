@@ -13,5 +13,8 @@
         public string Telefono { get; set; } = string.Empty;
 
         public ICollection<Clinica> Clinicas { get; set; } = new List<Clinica>();
+
+        public ICollection<Resena> Resenas { get; set; } = new List<Resena>();
+
     }
 }

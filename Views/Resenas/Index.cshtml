@@ -1,0 +1,41 @@
+@model IEnumerable<opsaver.Models.Resena>
+
+@{
+    ViewData["Title"] = "Reseñas";
+}
+
+<h1>Reseñas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Registrar reseña</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Médico</th>
+            <th>Paciente</th>
+            <th>Calificación</th>
+            <th>Comentario</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var resena in Model)
+        {
+            <tr>
+                <td>@resena.Medico?.NombreCompleto</td>
+                <td>@resena.Paciente?.NombreCompleto</td>
+                <td>@resena.Calificacion</td>
+                <td>@resena.Comentario</td>
+                <td>@resena.Fecha.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@resena.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@resena.Id">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@resena.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
