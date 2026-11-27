@@ -1,0 +1,39 @@
+﻿@model IEnumerable<opsaver.Models.Medico>
+
+@{
+    ViewData["Title"] = "Médicos";
+}
+
+<h1>Médicos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Registrar médico</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre completo</th>
+            <th>Especialidad</th>
+            <th>Correo electrónico</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var medico in Model)
+        {
+            <tr>
+                <td>@medico.NombreCompleto</td>
+                <td>@medico.Especialidad</td>
+                <td>@medico.Correo</td>
+                <td>@medico.Telefono</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@medico.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@medico.Id">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@medico.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
