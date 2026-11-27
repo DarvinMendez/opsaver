@@ -13,5 +13,7 @@ namespace opsaver.Data
         public DbSet<Medico> Medicos { get; set; }
 
         public DbSet<Clinica> Clinicas { get; set; }
+
+        public DbSet<Paciente> Pacientes { get; set; }
     }
 }
