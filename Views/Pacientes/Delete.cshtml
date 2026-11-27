@@ -1,0 +1,29 @@
+﻿@model opsaver.Models.Paciente
+
+@{
+    ViewData["Title"] = "Eliminar paciente";
+}
+
+<h1>Eliminar paciente</h1>
+
+<h3>¿Está seguro de que desea eliminar este paciente?</h3>
+
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">Nombre completo</dt>
+    <dd class="col-sm-10">@Model.NombreCompleto</dd>
+
+    <dt class="col-sm-2">Correo</dt>
+    <dd class="col-sm-10">@Model.Correo</dd>
+
+    <dt class="col-sm-2">Teléfono</dt>
+    <dd class="col-sm-10">@Model.Telefono</dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>
