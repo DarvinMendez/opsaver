@@ -41,3 +41,41 @@ Convertirse en una plataforma de referencia para consultar información sobre pr
 - SQL Server
 - Bootstrap
 - Git y GitHub
+
+## Instalación y ejecución
+
+### 1. Obtener el proyecto
+
+Clonar el repositorio desde GitHub:
+
+```bash
+git clone https://github.com/DarvinMendez/opsaver.git
+```
+
+Abrir la solución `opsaver.sln` desde Visual Studio.
+
+### 2. Base de datos
+
+En SQL Server Management Studio (SSMS), ejecutar los scripts de `Database/Scripts` en orden, comenzando por `01_CreateDatabase.sql`.
+
+Verificar que SQL Server tenga habilitado el modo de autenticación de SQL Server y Windows.
+
+Para crear el inicio de sesión de la aplicación, reemplazar `REEMPLAZAR_LOCALMENTE` en `02_CreateLogin.sql` por una contraseña propia. Ejecutar los scripts con permisos de administrador.
+
+### 3. Conexión
+
+Crear `appsettings.Local.json` en la raíz del proyecto y configurar la conexión a SQL Server:
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=.\\SQLEXPRESS;Database=OPSAVER;User Id=opsaver_app;Password=TU_CONTRASEÑA;Encrypt=True;TrustServerCertificate=True;"
+  }
+}
+```
+
+Sustituir `TU_CONTRASEÑA` por la contraseña configurada anteriormente.
+
+### 4. Ejecución
+
+Abrir `opsaver.sln` en Visual Studio, seleccionar `opsaver` como proyecto de inicio y pulsar F5.
